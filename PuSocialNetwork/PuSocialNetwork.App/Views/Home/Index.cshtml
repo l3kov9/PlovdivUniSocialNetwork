@@ -1,4 +1,4 @@
-﻿@model string[]
+﻿@model QuoteViewModel
 
 <div class="video-page">
     <video autoplay="" loop="" muted="" class="video">
@@ -20,16 +20,20 @@
                         "Паисий Хилендарски"
                     </h1><br /><br />
                     <h3 style="color:wheat"><i>Студентски портал за комуникация и обмяна на информация</i></h3><br />
-                    <h4 style="padding-right:30px;color:wheat"><i>Свържете се с приятели, колеги и завързвайте приятелства. Споделяйте снимки и мнения, пишете статии или участвайте в анкети и форуми, играйте игри или просто се забавлявайте ...</i></h4>
+                    <h4 style="padding-right:30px;color:wheat"><i>Свържете се с приятели, колеги, завързвайте нови приятелства. Споделяйте снимки и мнения, пишете статии или участвайте в анкети и форуми, играйте игри или просто се забавлявайте ...</i></h4>
                 </div>
                 <div class="masthead-content text-white py-5 py-md-0">
-                    <div class="text-center"><img src="~/images/logos/study.png" /></div>
+                    <div class="text-center"><img src="~/images/logos/study.png" height="200px" /></div>
                 </div>
 
                 <div class="col-md-10">
-                    <input type="text" class="form-control" placeholder="Факултетен номер" style="background-color:pink; font-size:15px" /><br />
-                    <input type="text" class="form-control" placeholder="ЕГН" style="background-color:pink; font-size:15px" /><br />
-                    <button type="submit" style="font-size:13px" class="btn btn-info form-control">Вход</button>
+                    <form method="post">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="All" class="text-warning" style="font-size:14px"></div>
+                        <input type="text" name="FacultyNumber" class="form-control" placeholder="Факултетен номер" style="background-color:pink; font-size:15px" /><br />
+                        <input type="password" name="Egn" class="form-control" placeholder="ЕГН" style="background-color:pink; font-size:15px" /><br />
+                        <button type="submit" style="font-size:13px" class="btn btn-info form-control">Вход</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -53,7 +57,7 @@
                 И
             </a>
         </li>
-        <li style="height:50px"></li>
+        <li style="height:2px"></li>
         <li class="list-unstyled-item">
             <a style="font-size: 15px; color: greenyellow;">
                 П
@@ -61,14 +65,40 @@
         </li>
         <li class="list-unstyled-item">
             <a style="font-size: 15px; color: greenyellow;">
-                У
+                Л
+            </a>
+        </li>
+        <li class="list-unstyled-item">
+            <a style="font-size: 15px; color: greenyellow;">
+                О
+            </a>
+        </li>
+        <li class="list-unstyled-item">
+            <a style="font-size: 15px; color: greenyellow;">
+                В
+            </a>
+        </li>
+        <li class="list-unstyled-item">
+            <a style="font-size: 15px; color: greenyellow;">
+                Д
+            </a>
+        </li>
+        <li class="list-unstyled-item">
+            <a style="font-size: 15px; color: greenyellow;">
+                И
+            </a>
+        </li>
+        <li class="list-unstyled-item">
+            <a style="font-size: 15px; color: greenyellow;">
+                В
             </a>
         </li>
     </ul>
 </div>
+
 <div class="social-icons text-right col-md-offset-4" style="padding-bottom:50px;padding-left:50px">
     <ul>
-        <li><h1 style="color:crimson;padding-right:15%" class="text-right">@Model[0]</h1></li>
-        <li><h3 style="padding-right:25%" class="text-right"><em>@Model[1]</em></h3></li>
+        <li><h1 style="color:crimson;padding-right:15%;padding-left:15%;" class="text-right">@Model.Text</h1></li>
+        <li><h3 style="padding-right:25%" class="text-right"><em>@Model.Author</em></h3></li>
     </ul>
 </div>
