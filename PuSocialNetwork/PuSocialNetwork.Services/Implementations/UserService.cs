@@ -13,19 +13,11 @@
             this.db = db;
         }
 
-        public UserServiceModel GetUserByFacNumAndEgn(string facultyNumber, string egn)
+        public int GetUserIdByFacNumAndEgn(string facultyNumber, string egn)
             => this.db
                 .Users
                 .Where(u => u.FacultyNumber == facultyNumber && u.Egn == egn)
-                .Select(u => new UserServiceModel()
-                {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    FacultyNumber = u.FacultyNumber,
-                    Egn = u.Egn
-                })
+                .Select(u => u.Id)
                 .FirstOrDefault();
     }
 }

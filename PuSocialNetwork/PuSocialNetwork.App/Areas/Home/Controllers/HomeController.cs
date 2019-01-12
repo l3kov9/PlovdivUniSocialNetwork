@@ -2,10 +2,15 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
+    [Area("Home")]
     public class HomeController : Controller
     {
-        [Area("Home")]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Games()
         {
             return View();
         }

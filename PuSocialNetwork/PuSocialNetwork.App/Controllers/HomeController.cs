@@ -1,5 +1,7 @@
 ﻿namespace PuSocialNetwork.App.Controllers
 {
+    using Infrastructure;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services;
@@ -32,16 +34,18 @@
                 return View(nameof(Index), GetQuote());
             }
 
-            var result = this.users.GetUserByFacNumAndEgn(user.FacultyNumber, user.Egn);
+            var userId = this.users.GetUserIdByFacNumAndEgn(user.FacultyNumber, user.Egn);
 
-            if(result == null)
+            if (userId == 0)
             {
                 ModelState.AddModelError(string.Empty, "Грешно потребителско име или парола");
 
                 return View(nameof(Index), GetQuote());
             }
 
-            return RedirectToAction("Index", "Home", new { area = "Home", model = result });
+            HttpContext.Session.SetInt32(SessionConstants.SessionUserId, userId);
+
+            return RedirectToAction("Index", "Home", new { area = "Home" });
         }
 
         private static QuoteViewModel GetQuote()

@@ -4,6 +4,6 @@
 
     public interface IUserService
     {
-        UserServiceModel GetUserByFacNumAndEgn(string facultyNumber, string egn);
+        int GetUserIdByFacNumAndEgn(string facultyNumber, string egn);
     }
 }

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Games";
+}
+
+<h2>Games</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default panel-front">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a asp-controller="Models" asp-action="Index"><img style='width: 100%;' src="~/images/games/get-rich.png" height="250"></a></h4>
+            </div>
+            <div class="panel-body">
+                <h2 class="text-center">Стани богат</h2>
+                <div class="text-right">
+                    <a asp-controller="Models" asp-action="Index" class="btn btn-primary form-control" role="button">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default panel-front">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a asp-controller="Models" asp-action="Index"><img style='width: 100%;' src="~/images/games/2048.png" height="250"></a></h4>
+            </div>
+            <div class="panel-body">
+                <h2 class="text-center">Play 2048</h2>
+                <div class="text-right">
+                    <a asp-controller="Models" asp-action="Index" class="btn btn-primary form-control" role="button">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default panel-front">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a asp-controller="Models" asp-action="Index"><img style='width: 100%;' src="~/images/games/minesweeper.jpg" height="250"></a></h4>
+            </div>
+            <div class="panel-body">
+                <h2 class="text-center">Minesweeper</h2>
+                <div class="text-right">
+                    <a asp-controller="Models" asp-action="Index" class="btn btn-primary form-control" role="button">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
