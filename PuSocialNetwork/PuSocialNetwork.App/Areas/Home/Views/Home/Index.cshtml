@@ -2,12 +2,55 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<link href="~/css/accordion.css" rel="stylesheet" />
 <div class="col-md-3">
-    First
+    <button class="accordion">Profile</button>
+    <div class="panel">
+        <p style="margin-top:50px">Visit your events here</p>
+        <a href="/events/myevents" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
+    </div>
+    <button class="accordion">Groups</button>
+    <div class="panel">
+        <p style="margin-top:50px">See all the events from all user</p>
+        <a href="/events/all" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
+    </div>
+    <button class="accordion">Articles</button>
+    <div class="panel">
+        <p style="margin-top:50px">Create new event here</p>
+        <a href="/events/create" style="margin-bottom:50px" class="btn btn-success form-control">Create</a>
+    </div>
+    <button class="accordion">Games</button>
+    <div class="panel">
+        <p style="margin-top:50px">Visit your events here</p>
+        <a href="/events/myevents" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
+    </div>
 </div>
 
 <div class="col-md-6">
+    <div class="jumbotron" style="background-color:lightsteelblue">
+        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
+        What's on your mind?<br /><br />
+
+        <form>
+            <div class="radio">
+                <label><input type="radio" name="optradio" checked>Status</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Youtube link</label>
+            </div>
+            <textarea placeholder="Share what you are thinking here ..." rows="5" class="form-control"></textarea>
+            <br />
+            <div class="text-right">
+                <input type="submit" value="Post" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <iframe width="100%" height="400"
+            src="https://www.youtube.com/embed/bo_efYhYU2A"></iframe>
+</div>
+
+<div class="col-md-3">
     <div class="jumbotron">
         <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
         Share what you are thinking here ...<br /><br />
@@ -27,7 +70,4 @@
         </form>
     </div>
 </div>
-
-<div class="col-md-3">
-    Third
-</div>
+<script src="~/js/accordion.js"></script>
