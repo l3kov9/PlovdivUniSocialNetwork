@@ -34,16 +34,18 @@
                 return View(nameof(Index), GetQuote());
             }
 
-            var userId = this.users.GetUserIdByFacNumAndEgn(user.FacultyNumber, user.Egn);
+            var userServiceModel = this.users.GetUserByFacNumAndEgn(user.FacultyNumber, user.Egn);
 
-            if (userId == 0)
+            if (userServiceModel == null)
             {
                 ModelState.AddModelError(string.Empty, "Грешно потребителско име или парола");
 
                 return View(nameof(Index), GetQuote());
             }
 
-            HttpContext.Session.SetInt32(SessionConstants.SessionUserId, userId);
+            HttpContext.Session.SetInt32(SessionConstants.SessionUserId, userServiceModel.Id);
+            HttpContext.Session.SetString(SessionConstants.SessionUserFirstName, userServiceModel.FirstName);
+            HttpContext.Session.SetString(SessionConstants.SessionUserLastName, userServiceModel.LastName);
 
             return RedirectToAction("Index", "Home", new { area = "Home" });
         }

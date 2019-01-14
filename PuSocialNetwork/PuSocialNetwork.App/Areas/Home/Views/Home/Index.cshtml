@@ -3,7 +3,9 @@
 }
 <link href="~/css/accordion.css" rel="stylesheet" />
 <div class="col-md-3">
-    <div style="position:fixed">
+    <div style="position:fixed;">
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
         <button class="accordion">Profile</button>
         <div class="panel">
             <p style="margin-top:50px">Visit your events here</p>
@@ -28,23 +30,65 @@
 </div>
 
 <div class="col-md-6">
-    <div class="jumbotron" style="background-color:lightsteelblue">
-        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
-        What's on your mind?<br /><br />
-
-        <form>
-            <div class="radio">
-                <label><input type="radio" name="optradio" checked>Status</label>
+    @*<div class="jumbotron" style="background-color:lightsteelblue">*@
+        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
+        <form action="Post" method="post" id="postForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="radio" style="text-align:center">
+                        <label><input type="radio" value="false" name="IsYoutube" checked>Status</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="radio">
+                        <label><input type="radio" value="true" name="IsYoutube">Youtube link</label>
+                    </div>
+                </div>
             </div>
-            <div class="radio">
-                <label><input type="radio" name="optradio">Youtube link</label>
-            </div>
-            <textarea maxlength="300" placeholder="Share what you are thinking here ..." rows="5" class="form-control"></textarea>
-            <br />
+            <textarea name="Content" maxlength="300" placeholder="Share what you are thinking here ..." rows="5" class="form-control"></textarea>
             <div class="text-right">
-                <input type="submit" value="Post" class="btn btn-primary" />
+                <input onclick="poststatus()" value="Post" class="btn btn-primary" />
             </div>
         </form>
+    </br>
+    @*</div>*@
+
+    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+        <h3><strong>Pencho Penchev</strong> shared:</h3>
+        <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
+            Hello lorem ipsum Hello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsum
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Write a comment ..." />
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary form-control">Like</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-success form-control">Comment</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+        <h3>Pencho Penchev shared:</h3>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Write a comment ..." />
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary form-control">Like</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-success form-control">Comment</a>
+            </div>
+        </div>
     </div>
 
     <iframe width="100%" height="400"
@@ -60,23 +104,22 @@
 <div class="col-md-3">
     <div style="position:fixed">
         <div class="jumbotron">
-            <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
-            Share what you are thinking here ...<br /><br />
 
-            <form>
-                <div class="radio">
-                    <label><input type="radio" name="optradio" checked>Status</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="optradio">Youtube link</label>
-                </div>
-                <textarea rows="5" class="form-control"></textarea>
-                <br />
-                <div class="text-right">
-                    <input type="submit" value="Post" class="btn btn-primary" />
-                </div>
-            </form>
         </div>
     </div>
 </div>
+
+
 <script src="~/js/accordion.js"></script>
+<script>
+    function poststatus() {
+        $.ajax({
+            url: "/Home/Post",
+            type: "post",
+            data: $("#postForm").serialize(),
+            success: function (result) {
+                $("#partial").html(result);
+            }
+        });
+    };
+</script>

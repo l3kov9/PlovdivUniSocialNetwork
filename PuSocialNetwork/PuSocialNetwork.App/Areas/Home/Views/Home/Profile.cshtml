@@ -6,7 +6,8 @@
 
 <div class="col-md-4">
     <div style="position:fixed">
-        <h2>Intro</h2>
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
         <button class="accordion">Profile</button>
         <div class="panel">
             <p style="margin-top:50px">Visit your events here</p>
@@ -37,12 +38,21 @@
             <img class="img-fluid d-block mx-auto" height="200px" src="http://placehold.it/200x200&amp;text=Logo" alt="">
         </div>
         <div class="col-md-8">
-            <div class="jumbotron" style="height:200px; background-color:lightgray">
-                <ul>
-                    <li>Name</li>
-                    <li>Birthdate</li>
-                    <li>Course</li>
-                </ul>
+            <div class="jumbotron" style="height:200px; background-color:lightslategrey">
+                <div class="col-md-5">
+                    <ul>
+                        <li>Name</li>
+                        <li>Birthdate</li>
+                        <li>Course</li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+                    <ul>
+                        <li>@Context.Session.GetString(SessionConstants.SessionUserFirstName) @Context.Session.GetString(SessionConstants.SessionUserLastName);</li>
+                        <li>12/12/2012</li>
+                        <li>Informatics</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
