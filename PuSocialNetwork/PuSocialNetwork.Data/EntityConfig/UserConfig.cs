@@ -20,6 +20,16 @@
                 .HasOne(u => u.Course)
                 .WithMany(c => c.Users)
                 .HasForeignKey(u => u.CourseId);
+
+            builder
+                .HasMany(u => u.Posts)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
+
+            builder
+                .HasMany(u => u.Articles)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
         }
     }
 }

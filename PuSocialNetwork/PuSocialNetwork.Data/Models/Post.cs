@@ -1,0 +1,15 @@
+﻿namespace PuSocialNetwork.Data.Models
+{
+    public class Post
+    {
+        public int Id { get; set; }
+
+        public string Content { get; set; }
+
+        public bool IsYoutubeVideo { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+    }
+}

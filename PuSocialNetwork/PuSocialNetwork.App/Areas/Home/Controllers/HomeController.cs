@@ -10,6 +10,11 @@
             return View();
         }
 
+        public IActionResult Profile(int id)
+        {
+            return View();
+        }
+
         public IActionResult Games()
         {
             return View();

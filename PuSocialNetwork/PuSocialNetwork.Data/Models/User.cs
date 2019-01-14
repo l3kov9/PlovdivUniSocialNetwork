@@ -1,5 +1,7 @@
 ﻿namespace PuSocialNetwork.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Common.DataConstants;
@@ -15,6 +17,10 @@
         [Required]
         [MaxLength(NameMaxLength)]
         public string LastName { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+        public string BirthPlace { get; set; }
 
         [Required]
         [RegularExpression(EmailRegex)]
@@ -33,5 +39,9 @@
         public int CourseId { get; set; }
 
         public Course Course { get; set; }
+
+        public List<Post> Posts { get; set; } = new List<Post>();
+
+        public List<Article> Articles { get; set; } = new List<Article>();
     }
 }
