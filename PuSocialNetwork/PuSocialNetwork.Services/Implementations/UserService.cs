@@ -2,6 +2,7 @@
 {
     using Data;
     using Models;
+    using System;
     using System.Linq;
 
     public class UserService : IUserService
@@ -43,5 +44,25 @@
                     ProfileImage = u.ProfileImage
                 })
                 .FirstOrDefault();
+
+        public bool UpdateImage(int userId, byte[] image)
+        {
+            try
+            {
+                this.db
+                    .Users
+                    .Where(u => u.Id == userId)
+                    .FirstOrDefault()
+                    .ProfileImage = image;
+
+                this.db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

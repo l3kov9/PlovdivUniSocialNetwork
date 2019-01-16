@@ -7,5 +7,7 @@
         UserServiceModel GetUserByFacNumAndEgn(string facultyNumber, string egn);
 
         UserServiceModel GetUserById(int id);
+
+        bool UpdateImage(int userId, byte[] image);
     }
 }

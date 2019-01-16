@@ -1,10 +1,14 @@
 ﻿namespace PuSocialNetwork.App.Areas.Home.Controllers
 {
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services;
     using System;
+    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     [Area("Home")]
     public class HomeController : Controller
@@ -70,6 +74,19 @@
             var user = this.users.GetUserById(id);
 
             return View(user);
+        }
+
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> UploadFiles(int userId, IFormFile file)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+
+                var success = this.users.UpdateImage(userId, memoryStream.ToArray());
+            }
+
+            return RedirectToAction(nameof(Profile), new { id = userId });
         }
 
         private string GetYoutubeCode(string content)
