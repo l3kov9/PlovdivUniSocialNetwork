@@ -1,4 +1,6 @@
-﻿@{
+﻿@model UserServiceModel
+
+@{
     ViewData["Title"] = "Profile";
 }
 <link href="~/css/accordion.css" rel="stylesheet" />
@@ -48,16 +50,30 @@
                 </div>
                 <div class="col-md-7">
                     <ul>
-                        <li>@Context.Session.GetString(SessionConstants.SessionUserFirstName) @Context.Session.GetString(SessionConstants.SessionUserLastName);</li>
-                        <li>12/12/2012</li>
-                        <li>Informatics</li>
+                        <li>@Model.FirstName @Model.LastName</li>
+                        <li>@Model.BirthDate.ToShortDateString() in @Model.BirthPlace</li>
+                        <li>@Model.Course</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <br /><br />
-
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" asp-controller="UploadFiles" asp-action="Index">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload one or more files using this form:</p>
+                    <input type="file" name="files" multiple />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Upload" />
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="jumbotron" style="background-color:lightsteelblue">
         <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
         What's on your mind?<br /><br />
@@ -79,11 +95,6 @@
 
     <iframe width="100%" height="400"
             src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+    
 </div>
 <script src="~/js/accordion.js"></script>

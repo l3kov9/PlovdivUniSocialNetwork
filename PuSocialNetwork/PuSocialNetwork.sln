@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuSocialNetwork.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuSocialNetwork.Common", "PuSocialNetwork.Common\PuSocialNetwork.Common.csproj", "{1C3D9ECF-DA85-40FC-936A-0EB258C3E3A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuSocialNetwork.Tests", "PuSocialNetwork.Tests\PuSocialNetwork.Tests.csproj", "{3E5C2AA8-41AD-45CB-BAB0-78BE6C408809}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuSocialNetwork.Tests", "PuSocialNetwork.Tests\PuSocialNetwork.Tests.csproj", "{5673A0C8-AE10-445D-B351-68CF2839055E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{1C3D9ECF-DA85-40FC-936A-0EB258C3E3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C3D9ECF-DA85-40FC-936A-0EB258C3E3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C3D9ECF-DA85-40FC-936A-0EB258C3E3A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E5C2AA8-41AD-45CB-BAB0-78BE6C408809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E5C2AA8-41AD-45CB-BAB0-78BE6C408809}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E5C2AA8-41AD-45CB-BAB0-78BE6C408809}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E5C2AA8-41AD-45CB-BAB0-78BE6C408809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5673A0C8-AE10-445D-B351-68CF2839055E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5673A0C8-AE10-445D-B351-68CF2839055E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5673A0C8-AE10-445D-B351-68CF2839055E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5673A0C8-AE10-445D-B351-68CF2839055E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

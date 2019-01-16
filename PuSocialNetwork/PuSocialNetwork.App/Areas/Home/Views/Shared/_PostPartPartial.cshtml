@@ -27,7 +27,7 @@
 
     @foreach (var post in Model)
     {
-        <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+        <div class="jumbotron" style="padding-bottom:50px; background-color:lightsalmon">
             <h3><strong>@post.AuthorName</strong> shared:</h3>
             <div style="text-align:left">
                 @{
@@ -38,12 +38,25 @@
                 <i>published on @post.PostDate.ToShortDateString()</i><br />
                 <i>@publishedTime</i>
             </div>
-            <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
-                @post.Content
-            </div>
+            @if (post.IsYoutubeVideo)
+            {
+                <div class="row">
+                    @{
+                        var source = "https://www.youtube.com/embed/" + post.Content;
+                    }
+                    <div class="col-md-10 col-md-offset-1">
+                        <iframe width="100%" height="200" src=@source></iframe>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
+                    @post.Content
+                </div>
+            }
             <div class="row">
                 <form method="post" asp-action="Comment">
-
                     <div class="col-md-6">
                         <input name="text" type="text" class="form-control" placeholder="Write a comment ..." />
                     </div>
@@ -73,49 +86,16 @@
         </div>
     }
 
-    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
-        <h3><strong>Pencho Penchev</strong> shared:</h3>
-        <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
-            Hello lorem ipsum Hello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsum
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Write a comment ..." />
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-info form-control">Comment</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-danger form-control">Like</a>
-            </div>
-        </div>
-        <div style="text-align:right">
-            0 comments 0 likes
-        </div>
-    </div>foreach
+    @*<nav aria-label="Page navigation example" class="text-center">
+            <ul class="pagination">
+                <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
 
-    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
-        <h3>Pencho Penchev shared:</h3>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Write a comment ..." />
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-info form-control">Comment</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-danger form-control">Like</a>
-            </div>
-        </div>
-    </div>
-
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+                    <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+                }
+                <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+            </ul>
+        </nav>*@
 </div>
