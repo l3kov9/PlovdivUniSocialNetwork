@@ -10,7 +10,7 @@ using PuSocialNetwork.Data;
 namespace PuSocialNetwork.Data.Migrations
 {
     [DbContext(typeof(SocialNetworkDbContext))]
-    [Migration("20190114152549_InitialCreate")]
+    [Migration("20190115210018_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,22 @@ namespace PuSocialNetwork.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Article");
+                    b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("PuSocialNetwork.Data.Models.Comment", b =>
+                {
+                    b.Property<int>("PostId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("Text");
+
+                    b.HasKey("PostId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("PuSocialNetwork.Data.Models.Course", b =>
@@ -58,6 +73,19 @@ namespace PuSocialNetwork.Data.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("PuSocialNetwork.Data.Models.Like", b =>
+                {
+                    b.Property<int>("PostId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("PostId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("PuSocialNetwork.Data.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -68,13 +96,15 @@ namespace PuSocialNetwork.Data.Migrations
 
                     b.Property<bool>("IsYoutubeVideo");
 
+                    b.Property<DateTime>("PostDate");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("PuSocialNetwork.Data.Models.User", b =>
@@ -127,6 +157,32 @@ namespace PuSocialNetwork.Data.Migrations
                 {
                     b.HasOne("PuSocialNetwork.Data.Models.User", "User")
                         .WithMany("Articles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PuSocialNetwork.Data.Models.Comment", b =>
+                {
+                    b.HasOne("PuSocialNetwork.Data.Models.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PuSocialNetwork.Data.Models.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PuSocialNetwork.Data.Models.Like", b =>
+                {
+                    b.HasOne("PuSocialNetwork.Data.Models.Post", "Post")
+                        .WithMany("Likes")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PuSocialNetwork.Data.Models.User", "User")
+                        .WithMany("Likes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -1,11 +1,12 @@
-﻿@{
+﻿@model IEnumerable<PuSocialNetwork.Services.Models.PostListingServiceModel>
+@{
     ViewData["Title"] = "Index";
 }
 <link href="~/css/accordion.css" rel="stylesheet" />
 <div class="col-md-3">
     <div style="position:fixed;">
-        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
-        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
+        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
         <button class="accordion">Profile</button>
         <div class="panel">
             <p style="margin-top:50px">Visit your events here</p>
@@ -30,75 +31,7 @@
 </div>
 
 <div class="col-md-6">
-    @*<div class="jumbotron" style="background-color:lightsteelblue">*@
-        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
-        <form action="Post" method="post" id="postForm">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="radio" style="text-align:center">
-                        <label><input type="radio" value="false" name="IsYoutube" checked>Status</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="radio">
-                        <label><input type="radio" value="true" name="IsYoutube">Youtube link</label>
-                    </div>
-                </div>
-            </div>
-            <textarea name="Content" maxlength="300" placeholder="Share what you are thinking here ..." rows="5" class="form-control"></textarea>
-            <div class="text-right">
-                <input onclick="poststatus()" value="Post" class="btn btn-primary" />
-            </div>
-        </form>
-    </br>
-    @*</div>*@
-
-    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
-        <h3><strong>Pencho Penchev</strong> shared:</h3>
-        <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
-            Hello lorem ipsum Hello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsum
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Write a comment ..." />
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-primary form-control">Like</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-success form-control">Comment</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
-        <h3>Pencho Penchev shared:</h3>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Write a comment ..." />
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-primary form-control">Like</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-success form-control">Comment</a>
-            </div>
-        </div>
-    </div>
-
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
-    <iframe width="100%" height="400"
-            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+    @await Html.PartialAsync("_PostPartPartial", Model)
 </div>
 
 <div class="col-md-3">
@@ -111,7 +44,7 @@
 
 
 <script src="~/js/accordion.js"></script>
-<script>
+@*<script>
     function poststatus() {
         $.ajax({
             url: "/Home/Post",
@@ -122,4 +55,4 @@
             }
         });
     };
-</script>
+</script>*@

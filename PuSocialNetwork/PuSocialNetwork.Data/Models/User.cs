@@ -43,5 +43,9 @@
         public List<Post> Posts { get; set; } = new List<Post>();
 
         public List<Article> Articles { get; set; } = new List<Article>();
+
+        public List<Like> Likes { get; set; } = new List<Like>();
+
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

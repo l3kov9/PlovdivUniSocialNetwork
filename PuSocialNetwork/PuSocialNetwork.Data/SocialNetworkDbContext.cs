@@ -15,10 +15,29 @@
 
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Like> Likes { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
                 .ApplyConfiguration(new UserConfig());
+
+            builder
+                .ApplyConfiguration(new PostConfig());
+
+            //builder
+            //    .Entity<Comment>()
+            //    .HasKey(c => new { c.PostId, c.UserId });
+
+            //builder
+            //    .Entity<Like>()
+            //    .HasKey(l => new { l.PostId, l.UserId });
 
             base.OnModelCreating(builder);
         }

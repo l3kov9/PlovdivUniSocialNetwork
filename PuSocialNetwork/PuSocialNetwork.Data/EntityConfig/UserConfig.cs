@@ -30,6 +30,16 @@
                 .HasMany(u => u.Articles)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.UserId);
+
+            builder
+                .HasMany(u => u.Comments)
+                .WithOne(c => c.User)
+                .HasForeignKey(c => c.UserId);
+
+            builder
+                .HasMany(u => u.Likes)
+                .WithOne(l => l.User)
+                .HasForeignKey(l => l.UserId);
         }
     }
 }

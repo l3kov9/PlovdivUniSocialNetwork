@@ -32,6 +32,7 @@
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPostService, PostService>();
 
             services.AddMvc(options =>
             {

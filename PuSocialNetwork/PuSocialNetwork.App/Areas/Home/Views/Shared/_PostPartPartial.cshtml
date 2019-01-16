@@ -1,0 +1,121 @@
+﻿@model IEnumerable<PuSocialNetwork.Services.Models.PostListingServiceModel>
+
+<div id="partial">
+    <div class="jumbotron" style="padding:5px; background-color:lightgray">
+        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
+        <form method="post" id="postForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="radio" style="text-align:center">
+                        <label><input type="radio" value="false" name="IsYoutube" checked>Status</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="radio">
+                        <label><input type="radio" value="true" name="IsYoutube">Youtube link</label>
+                    </div>
+                </div>
+            </div>
+            <input name="UserId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
+            <textarea name="Content" maxlength="300" placeholder="Share what you are thinking here ..." rows="5" class="form-control"></textarea>
+            <div class="text-right">
+                <input onclick="poststatus()" value="Post" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    </br>
+
+    @foreach (var post in Model)
+    {
+        <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+            <h3><strong>@post.AuthorName</strong> shared:</h3>
+            <div style="text-align:left">
+                @{
+                    var hours = (int)((DateTime.UtcNow - post.PostDate).TotalHours);
+                    string publishedTime = hours < 24 ? hours + " hour ago" : string.Empty;
+                }
+
+                <i>published on @post.PostDate.ToShortDateString()</i><br />
+                <i>@publishedTime</i>
+            </div>
+            <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
+                @post.Content
+            </div>
+            <div class="row">
+                <form method="post" asp-action="Comment">
+
+                    <div class="col-md-6">
+                        <input name="text" type="text" class="form-control" placeholder="Write a comment ..." />
+                    </div>
+                    <div class="col-md-3">
+                        <input name="userId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
+                        <input name="postId" value="@post.Id" hidden />
+                        <input type="submit" value="Comment" class="btn btn-info form-control" />
+                    </div>
+                </form>
+                <div class="col-md-3">
+                    <form method="post" asp-action="Like">
+                        <input name="userId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
+                        <input name="postId" value="@post.Id" hidden />
+                        <input type="submit" value="Like" class="btn btn-danger form-control" />
+                    </form>
+                </div>
+            </div>
+            <div style="text-align:right">
+                @post.Comments.Count comments @post.TotalLikes likes
+            </div>
+            @foreach (var comment in post.Comments)
+            {
+                <div class="row">
+                    <div style="color:red">@comment.AuthorName says: @comment.Text</div>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+        <h3><strong>Pencho Penchev</strong> shared:</h3>
+        <div class="jumbotron" style="border-radius:100%; background-color:lightgray">
+            Hello lorem ipsum Hello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsumHello lorem ipsum
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Write a comment ..." />
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-info form-control">Comment</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-danger form-control">Like</a>
+            </div>
+        </div>
+        <div style="text-align:right">
+            0 comments 0 likes
+        </div>
+    </div>foreach
+
+    <div class="jumbotron" style="padding-bottom:50px; background-color:lightblue">
+        <h3>Pencho Penchev shared:</h3>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Write a comment ..." />
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-info form-control">Comment</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-danger form-control">Like</a>
+            </div>
+        </div>
+    </div>
+
+    <iframe width="100%" height="400"
+            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+    <iframe width="100%" height="400"
+            src="https://www.youtube.com/embed/VA770wpLX-Q"></iframe>
+</div>
