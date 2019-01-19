@@ -27,6 +27,7 @@
                     IsYoutubeVideo = p.IsYoutubeVideo,
                     PostDate = p.PostDate,
                     AuthorName = p.User.FirstName + " " + p.User.LastName,
+                    Image = p.User.ProfileImage,
                     TotalLikes = p.Likes.Count,
                     Comments = p.Comments.Select(c => new CommentServiceModel()
                     {

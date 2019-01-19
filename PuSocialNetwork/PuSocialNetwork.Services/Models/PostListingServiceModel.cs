@@ -15,6 +15,8 @@
 
         public string AuthorName { get; set; }
 
+        public byte[] Image { get; set; }
+
         public int TotalLikes { get; set; }
 
         public List<CommentServiceModel> Comments { get; set; }

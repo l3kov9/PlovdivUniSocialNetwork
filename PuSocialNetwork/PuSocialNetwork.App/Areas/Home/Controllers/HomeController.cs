@@ -3,9 +3,9 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
+    using PuSocialNetwork.App.Infrastructure;
     using Services;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -77,16 +77,22 @@
         }
 
         [HttpPost("UploadFiles")]
-        public async Task<IActionResult> UploadFiles(int userId, IFormFile file)
+        public async Task<IActionResult> UploadFiles(UploadFileViewModel fileModel)
         {
-            using (var memoryStream = new MemoryStream())
+            if (!ModelState.IsValid)
             {
-                await file.CopyToAsync(memoryStream);
-
-                var success = this.users.UpdateImage(userId, memoryStream.ToArray());
+                return RedirectToAction(nameof(Profile), new { id = fileModel.UserId });
             }
 
-            return RedirectToAction(nameof(Profile), new { id = userId });
+            using (var memoryStream = new MemoryStream())
+            {
+                await fileModel.File.CopyToAsync(memoryStream);
+
+                var success = this.users.UpdateImage(fileModel.UserId, memoryStream.ToArray());
+                HttpContext.Session.SetString(SessionConstants.SessionUserImage, Convert.ToBase64String(memoryStream.ToArray()));
+            }
+
+            return RedirectToAction(nameof(Profile), new { id = fileModel.UserId });
         }
 
         private string GetYoutubeCode(string content)

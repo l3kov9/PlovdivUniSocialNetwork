@@ -35,7 +35,8 @@
 
 <div class="col-md-8">
     @{
-        var base64 = Convert.ToBase64String(Model.ProfileImage);
+        var bytes = Convert.FromBase64String(Context.Session.GetString(SessionConstants.SessionUserImage));
+        var base64 = Convert.ToBase64String(bytes);
         var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
     }
 
@@ -68,8 +69,8 @@
             <div class="form-group">
                 <div class="col-md-10">
                     <p>Upload one or more files using this form:</p>
-                    <input name="userId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
-                    <input type="file" name="file" />
+                    <input name="UserId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
+                    <input type="file" name="File" />
                 </div>
             </div>
             <div class="form-group">
@@ -80,7 +81,7 @@
         </form>
     </div>
     <div class="jumbotron" style="background-color:lightsteelblue">
-        <img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar">
+        <img src="@imgSrc" height="50" width="50" class="avatar" alt="Avatar">
         What's on your mind?<br /><br />
 
         <form>

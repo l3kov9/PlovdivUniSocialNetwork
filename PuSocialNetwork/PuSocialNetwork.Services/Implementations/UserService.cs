@@ -22,7 +22,8 @@
                 {
                     Id = u.Id,
                     FirstName = u.FirstName,
-                    LastName = u.LastName
+                    LastName = u.LastName,
+                    ProfileImage = u.ProfileImage
                 })
                 .FirstOrDefault();
 

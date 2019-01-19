@@ -46,6 +46,7 @@
             HttpContext.Session.SetInt32(SessionConstants.SessionUserId, userServiceModel.Id);
             HttpContext.Session.SetString(SessionConstants.SessionUserFirstName, userServiceModel.FirstName);
             HttpContext.Session.SetString(SessionConstants.SessionUserLastName, userServiceModel.LastName);
+            HttpContext.Session.SetString(SessionConstants.SessionUserImage, Convert.ToBase64String(userServiceModel.ProfileImage));
 
             return RedirectToAction("Index", "Home", new { area = "Home" });
         }
