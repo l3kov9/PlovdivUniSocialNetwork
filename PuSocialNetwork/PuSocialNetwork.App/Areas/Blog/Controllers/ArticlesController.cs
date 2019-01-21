@@ -47,6 +47,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Create")]
         public async Task<IActionResult> Create(PublishArticleViewModel model)
         {
@@ -64,6 +65,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("DeleteArticle")]
         public async Task<IActionResult> DeleteArticle(int ArticleId, int page)
         {

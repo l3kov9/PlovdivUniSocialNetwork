@@ -34,6 +34,7 @@
                     @if (Model.CurrentUserName == article.Author)
                     {
                         <form method="post" asp-controller="Articles" asp-action="DeleteArticle">
+                            @Html.AntiForgeryToken()
                             <input type="hidden" name="ArticleId" value="@article.Id" />
                             <input type="hidden" name="page" value="@Model.CurrentPage" />
                             <button class="btn btn-danger">Delete</button>

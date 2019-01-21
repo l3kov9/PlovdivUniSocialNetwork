@@ -4,6 +4,7 @@
     <div class="jumbotron" style="padding:5px; background-color:lightgray">
         <img src="@Context.Session.GetString(SessionConstants.SessionUserImage)" height="50" width="50" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
         <form method="post" id="postForm">
+            @Html.AntiForgeryToken()
             <div class="row">
                 <div class="col-md-6">
                     <div class="radio" style="text-align:center">
@@ -59,6 +60,7 @@
             }
             <div class="row">
                 <form method="post" asp-action="Comment">
+                    @Html.AntiForgeryToken()
                     <div class="col-md-6">
                         <input name="text" type="text" class="form-control" placeholder="Write a comment ..." />
                     </div>
@@ -70,6 +72,7 @@
                 </form>
                 <div class="col-md-3">
                     <form method="post" asp-action="Like">
+                        @Html.AntiForgeryToken()
                         <input name="userId" value="@Context.Session.GetInt32(SessionConstants.SessionUserId)" hidden />
                         <input name="postId" value="@post.Id" hidden />
                         <input type="submit" value="Like" class="btn btn-danger form-control" />

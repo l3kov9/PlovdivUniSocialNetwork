@@ -34,6 +34,7 @@
                 <li class="nav-item"><a href="/Home/Home/Games" class="nav-link"><i class="fa fa-bell"></i><span>Games</span></a></li>
                 <li>
                     <form class="navbar-form" role="search">
+                        @Html.AntiForgeryToken()
                         <div class="input-group add-on">
                             <input class="form-control" placeholder="Find Friends ... " name="srch-term" id="srch-term" type="text">
 
@@ -44,11 +45,11 @@
                     </form>
                 </li>
                 <li class="nav-item dropdown">
-                    <a style="padding-top: 5px;padding-bottom: 15px;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="@Context.Session.GetString(SessionConstants.SessionUserImage)"height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;"> @Context.Session.GetString(SessionConstants.SessionUserFirstName) @Context.Session.GetString(SessionConstants.SessionUserLastName)<b class="caret"></b></a>
+                    <a style="padding-top: 5px;padding-bottom: 15px;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="@Context.Session.GetString(SessionConstants.SessionUserImage)" height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;"> @Context.Session.GetString(SessionConstants.SessionUserFirstName) @Context.Session.GetString(SessionConstants.SessionUserLastName)<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                        <li><a href="/Profile/@Context.Session.GetInt32(SessionConstants.SessionUserId)" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
                         <li class="divider dropdown-divider"></li>
-                        <li><a href="#" class="dropdown-item">Logout</a></li>
+                        <li><a href="/Profile/Logout" class="dropdown-item">Logout</a></li>
                     </ul>
                 </li>
             </ul>

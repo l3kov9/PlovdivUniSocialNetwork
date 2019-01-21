@@ -31,6 +31,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("/Home/Post")]
         public IActionResult Post(PostViewModel post)
         {
@@ -47,6 +48,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("/Home/Like")]
         public IActionResult Like(int userId, int postId)
         {
@@ -58,6 +60,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("/Home/Comment")]
         public IActionResult Comment(int userId, int postId, string text)
         {
@@ -76,7 +79,16 @@
             return View(user);
         }
 
+        [Route("/Profile/Logout")]
+        public IActionResult Logout()
+        {
+            this.HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
         [HttpPost("UploadFiles")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UploadFiles(UploadFileViewModel fileModel)
         {
             if (!ModelState.IsValid || fileModel.File == null)
