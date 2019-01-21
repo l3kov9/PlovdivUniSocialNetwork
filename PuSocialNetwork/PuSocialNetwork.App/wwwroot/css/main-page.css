@@ -1,0 +1,32 @@
+﻿.main-heading {
+    color: wheat;
+}
+
+.secondary-heading {
+    padding-right: 30px;
+    color: wheat;
+}
+
+.input-field {
+    background-color: lightgray;
+    font-size: 15px;
+}
+
+.input-button {
+    font-size: 13px;
+}
+
+.letter-right {
+    font-size: 15px;
+    color: greenyellow;
+}
+
+.quote-text {
+    color: crimson;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.quote-author {
+    padding-right: 25%;
+}

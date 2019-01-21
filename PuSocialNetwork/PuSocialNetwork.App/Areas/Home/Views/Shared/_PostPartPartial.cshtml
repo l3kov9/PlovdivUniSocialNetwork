@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<PuSocialNetwork.Services.Models.PostListingServiceModel>
 
 <div id="partial">
-    @{
-        var bytes = Convert.FromBase64String(Context.Session.GetString(SessionConstants.SessionUserImage));
-        var base64 = Convert.ToBase64String(bytes);
-        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-    }
     <div class="jumbotron" style="padding:5px; background-color:lightgray">
-        <img src="@imgSrc" height="50" width="50" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
+        <img src="@Context.Session.GetString(SessionConstants.SessionUserImage)" height="50" width="50" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
         <form method="post" id="postForm">
             <div class="row">
                 <div class="col-md-6">
@@ -32,7 +27,7 @@
 
     @foreach (var post in Model)
     {
-        var base64Post = Convert.ToBase64String(post.Image);
+        var base64 = Convert.ToBase64String(post.Image);
         var src = String.Format("data:image/gif;base64,{0}", base64);
         <div class="jumbotron" style="padding-bottom:50px; background-color:lightsalmon">
             <a href=""><h3><img src="@src" height="40" width="40" class="avatar" alt="Avatar" style="border-radius: 25px 25px;"> <strong>@post.AuthorName</strong> shared:</h3></a>

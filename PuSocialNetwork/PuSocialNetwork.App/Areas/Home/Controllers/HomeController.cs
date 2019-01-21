@@ -79,7 +79,7 @@
         [HttpPost("UploadFiles")]
         public async Task<IActionResult> UploadFiles(UploadFileViewModel fileModel)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || fileModel.File == null)
             {
                 return RedirectToAction(nameof(Profile), new { id = fileModel.UserId });
             }
@@ -89,7 +89,10 @@
                 await fileModel.File.CopyToAsync(memoryStream);
 
                 var success = this.users.UpdateImage(fileModel.UserId, memoryStream.ToArray());
-                HttpContext.Session.SetString(SessionConstants.SessionUserImage, Convert.ToBase64String(memoryStream.ToArray()));
+
+                var base64 = Convert.ToBase64String(memoryStream.ToArray());
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                HttpContext.Session.SetString(SessionConstants.SessionUserImage, imgSrc);
             }
 
             return RedirectToAction(nameof(Profile), new { id = fileModel.UserId });

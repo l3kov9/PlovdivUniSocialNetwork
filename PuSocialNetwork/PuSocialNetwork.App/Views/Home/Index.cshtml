@@ -19,20 +19,19 @@
                     <h1 class="uni-name-second">
                         "Paisii Hilendarski"
                     </h1><br /><br />
-                    <h3 style="color:wheat"><i>Social Network for FMI Plovdiv's students</i></h3>
-                    <h4 style="padding-right:30px;color:wheat"><i>Connect with friends, collegues, create new friendships. Post photo or status, write articles or be involved in polls and forums, play games or just have fun ...</i></h4>
+                    <h3 class="main-heading"><i>Social Network for FMI Plovdiv's students</i></h3>
+                    <h4 class="secondary-heading"><i>Connect with friends, collegues, create new friendships. Post photo or status, write articles or be involved in polls and forums, play games or just have fun ...</i></h4>
                 </div>
                 <div class="masthead-content text-white py-5 py-md-0">
                     <div class="text-center"><img src="~/images/logos/study.png" height="200px" /></div>
                 </div>
-
                 <div class="col-md-10">
                     <form method="post">
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="All" class="text-warning" style="font-size:14px"></div>
-                        <input type="text" name="FacultyNumber" class="form-control" placeholder="Faculty Number" style="background-color:pink; font-size:15px" /><br />
-                        <input type="password" name="Egn" class="form-control" placeholder="Personal Id /EGN/" style="background-color:pink; font-size:15px" /><br />
-                        <button type="submit" style="font-size:13px" class="btn btn-info form-control">Log in</button>
+                        <input type="text" name="FacultyNumber" placeholder="Faculty Number" class="form-control input-field" /><br />
+                        <input type="password" name="Egn" placeholder="Personal Id /EGN/" class="form-control input-field" /><br />
+                        <button type="submit" class="btn btn-info form-control input-button">Log in</button>
                     </form>
                 </div>
             </div>
@@ -42,47 +41,23 @@
 
 <div class="social-icons">
     <ul class="list-unstyled text-center mb-0">
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                P
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                L
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                O
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                V
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                D
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                I
-            </a>
-        </li>
-        <li class="list-unstyled-item">
-            <a style="font-size: 15px; color: greenyellow;">
-                V
-            </a>
-        </li>
+        @{
+            var text = "PLOVDIV";
+            foreach (var letter in text)
+            {
+                <li class="list-unstyled-item">
+                    <a style="font-size: 15px; color: greenyellow;">
+                        @letter
+                    </a>
+                </li>
+            }
+        }
     </ul>
 </div>
 
 <div class="social-icons text-right col-md-offset-4" style="padding-bottom:50px;padding-left:50px">
     <ul>
-        <li><h1 style="color:crimson;padding-right:15%;padding-left:15%;" class="text-right">@Model.Text</h1></li>
-        <li><h3 style="padding-right:25%" class="text-right"><em>@Model.Author</em></h3></li>
+        <li><h1 class="text-right quote-text">@Model.Text</h1></li>
+        <li><h3 class="text-right quote-author"><em>@Model.Author</em></h3></li>
     </ul>
 </div>

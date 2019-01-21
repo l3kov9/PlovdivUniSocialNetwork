@@ -42,7 +42,24 @@
                     FacultyNumber = u.FacultyNumber,
                     Egn = u.Egn,
                     Course = u.Course.Name,
-                    ProfileImage = u.ProfileImage
+                    ProfileImage = u.ProfileImage,
+                    Posts = u.Posts.OrderByDescending(p => p.PostDate)
+                        .Select(p => new PostListingServiceModel
+                        {
+                            Id = p.Id,
+                            Content = p.Content,
+                            PostDate = p.PostDate,
+                            IsYoutubeVideo = p.IsYoutubeVideo,
+                            TotalLikes = p.Likes.Count,
+                            Image = p.User.ProfileImage,
+                            Comments = p.Comments.Select(c => new CommentServiceModel
+                            {
+                                Text = c.Text,
+                                AuthorName = c.User.FirstName + " " + c.User.LastName
+                            })
+                            .ToList()
+                        })
+                        .ToList()
                 })
                 .FirstOrDefault();
 

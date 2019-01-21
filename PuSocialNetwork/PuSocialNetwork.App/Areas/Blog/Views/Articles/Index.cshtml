@@ -1,0 +1,72 @@
+﻿@model ArticleListingViewModel
+@{
+    ViewData["Title"] = "All Articles";
+}
+
+<br /><br /><a asp-action="Create" class="btn btn-primary">Create new Article</a>
+<nav aria-label="Page navigation example" class="text-center">
+    <ul class="pagination">
+        <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+            <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+        }
+        <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+    </ul>
+</nav>
+
+@foreach (var article in Model.Articles)
+{
+    var base64 = Convert.ToBase64String(article.AuthorImage);
+    var src = String.Format("data:image/gif;base64,{0}", base64);
+
+    <div class="card" style="background-color:lightblue; height: 300px;">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-5 text-center">
+                <br /><br />
+                <img class="card-img-top img-circle" src="@src" alt="@article.Author" height="200" width="200">
+            </div>
+            <div class="col-md-6">
+                <br />
+                <div class="text-right">
+                    @if (Model.CurrentUserName == article.Author)
+                    {
+                        <form method="post" asp-controller="Articles" asp-action="DeleteArticle">
+                            <input type="hidden" name="ArticleId" value="@article.Id" />
+                            <input type="hidden" name="page" value="@Model.CurrentPage" />
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    }
+                    <div class="card-block">
+                        <br />
+                        <h1 class="card-title text-center"><strong>@article.Title</strong></h1><br />
+                        <div class="text-right">
+                            <br />
+                            <em>
+                                Author: @article.Author
+                                <br />published on @article.PublishDate.ToShortDateString()
+                            </em>
+                        </div><br />
+                        <p class="card-text"><a asp-action="Details" asp-route-id="@article.Id" class="btn btn-success  form-control">Read More ...</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+}
+
+<nav aria-label="Page navigation example" class="text-center">
+    <ul class="pagination">
+        <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+            <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+        }
+        <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+    </ul>
+</nav>

@@ -1,6 +1,7 @@
 ﻿namespace PuSocialNetwork.Services.Models
 {
     using System;
+    using System.Collections.Generic;
 
     public class UserServiceModel
     {
@@ -23,5 +24,7 @@
         public string Egn { get; set; }
 
         public byte[] ProfileImage { get; set; }
+
+        public List<PostListingServiceModel> Posts { get; set; }
     }
 }

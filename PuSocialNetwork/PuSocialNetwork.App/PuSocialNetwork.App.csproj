@@ -17,4 +17,16 @@
     <ProjectReference Include="..\PuSocialNetwork.Services\PuSocialNetwork.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Areas\Blog\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Blog\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Blog\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

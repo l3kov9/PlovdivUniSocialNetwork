@@ -33,6 +33,8 @@
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IBlogArticleService, BlogArticleService>();
+            services.AddTransient<IHtmlService, HtmlService>();
 
             services.AddMvc(options =>
             {
