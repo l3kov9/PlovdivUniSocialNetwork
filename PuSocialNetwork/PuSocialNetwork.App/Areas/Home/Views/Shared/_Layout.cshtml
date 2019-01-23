@@ -28,10 +28,10 @@
             <ul class="nav navbar-nav navbar-right ml-auto" style="padding-right:50px">
                 <br />
                 <li class="nav-item"><a href="/Home" class="nav-link"><i class="fa fa-home"></i><span>Home</span></a></li>
-                <li class="nav-item"><a href="/Profile/1" class="nav-link"><i class="fa fa-gears"></i><span>Profile</span></a></li>
+                <li class="nav-item"><a href="/Profile/@Context.Session.GetInt32(SessionConstants.SessionUserId)" class="nav-link"><i class="fa fa-gears"></i><span>Profile</span></a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-users"></i><span>Course</span></a></li>
                 <li class="nav-item"><a href="/Articles" class="nav-link"><i class="fa fa-envelope"></i><span>Articles</span></a></li>
-                <li class="nav-item"><a href="/Home/Home/Games" class="nav-link"><i class="fa fa-bell"></i><span>Games</span></a></li>
+                <li class="nav-item"><a href="/Games/All" class="nav-link"><i class="fa fa-bell"></i><span>Games</span></a></li>
                 <li>
                     <form class="navbar-form" role="search">
                         @Html.AntiForgeryToken()
