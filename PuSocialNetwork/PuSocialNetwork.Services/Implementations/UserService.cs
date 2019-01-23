@@ -1,8 +1,11 @@
 ﻿namespace PuSocialNetwork.Services.Implementations
 {
     using Data;
+    using Data.Models;
     using Models;
+    using Models.Games;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class UserService : IUserService
@@ -82,5 +85,32 @@
 
             return true;
         }
+
+        public void AddScoreToPlay2048(int userId, int finalScore, int maxNumber)
+        {
+            this.db.Play2048Scores.Add(new Play2048Score
+            {
+                FinalScore = finalScore,
+                MaxNumber = maxNumber,
+                UserId = userId
+            });
+
+            this.db.SaveChanges();
+        }
+
+        public IEnumerable<ScoreServiceModel> GetHighScoresToPlay2048(int count)
+            => this.db
+                .Play2048Scores
+                .OrderByDescending(sc => sc.HasWon)
+                .ThenByDescending(sc => sc.FinalScore)
+                .Select(sc => new ScoreServiceModel
+                {
+                    Username = sc.User.FirstName + " " + sc.User.LastName,
+                    FinalScore = sc.FinalScore,
+                    HasWon = sc.HasWon
+                })
+                .Take(count)
+                .ToList();
     }
 }
+

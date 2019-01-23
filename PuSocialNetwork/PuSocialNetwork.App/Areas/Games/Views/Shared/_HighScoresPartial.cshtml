@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ScoreServiceModel>
+
+    <div id="highScorePartial">
+        <h1 id="topPlayersHeading"><strong>Top Players</strong></h1>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var score = Model.ElementAt(i);
+            var rank = i + 1;
+            var isWinner = score.HasWon;
+
+            <div id="highscoreRow" class="row col-md-offset-2"><span class="text-success">@rank</span>. <strong>@score.Username</strong> <span class="text-danger">@score.FinalScore</span> @(isWinner ? "/Winner/" : string.Empty)</div>
+        }
+    </div>

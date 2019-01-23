@@ -40,6 +40,11 @@
                 .HasMany(u => u.Likes)
                 .WithOne(l => l.User)
                 .HasForeignKey(l => l.UserId);
+
+            builder
+                .HasMany(u => u.Play2048Scores)
+                .WithOne(sc => sc.User)
+                .HasForeignKey(sc => sc.UserId);
         }
     }
 }

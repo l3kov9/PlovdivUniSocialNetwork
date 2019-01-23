@@ -23,6 +23,8 @@
 
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<Play2048Score> Play2048Scores { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder

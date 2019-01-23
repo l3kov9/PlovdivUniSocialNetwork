@@ -1,0 +1,58 @@
+﻿@model GameViewModel
+
+<div id="partial">
+    <form asp-controller="Games" asp-action="Index" method="post" id="gameForm">
+        <br />
+        <div class="row">
+            @if (Model.IsFinished == true)
+            {
+                var gameOverMessage = Model.IsFinished ? $"Game Over! Final Score: {Model.CurrentScore}" : string.Empty;
+                if (Model.MaxNumber == 2048)
+                {
+                    gameOverMessage = "You win! 2048";
+                }
+
+                <div id="gameOverMessage">@gameOverMessage</div>
+                <br />
+                @if (this.Context.Session.GetInt32("SendResult") == 0)
+                {
+                    <div id="saveUsername">
+                        <div id="save-button" class="col-md-2"><input onclick="saveGame()" value="Save" class="btn btn-sm btn-success form-control" /></div>
+                        <div id="errorMessage"></div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div style="height:30px"></div>
+            }
+        </div>
+        @for (int i = 0; i < Model.Field.GetLength(0); i++)
+        {
+            <div class="row">
+                @for (int k = 0; k < Model.Field.GetLength(1); k++)
+                {
+                    <div class="col-md-3">
+                        @{
+                            var numberToShow = Model.Field[i, k] == 0 ? string.Empty : Model.Field[i, k].ToString();
+                            var inputId = $"inputField{numberToShow}";
+                        }
+                        <input value="@numberToShow" class="form-control" id=@inputId readonly />
+                    </div>
+                }
+            </div>
+        }
+        <div id="arrowInput">
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-offset-6">
+                <br />
+                Current Score: <input value="@Model.CurrentScore" class="form-control" id="scoreField" readonly />
+            </div>
+            <div class="col-md-3">
+                <br />
+                Max Number: <input value="@Model.MaxNumber" class="form-control" id="scoreField" readonly />
+            </div>
+        </div>
+    </form>
+</div>
