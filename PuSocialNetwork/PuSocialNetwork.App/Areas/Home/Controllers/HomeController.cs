@@ -75,7 +75,7 @@
         public IActionResult Profile(int id)
         {
             var user = this.users.GetUserById(id);
-
+            
             return View(user);
         }
 

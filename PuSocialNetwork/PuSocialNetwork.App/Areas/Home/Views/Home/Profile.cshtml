@@ -6,28 +6,23 @@
 <link href="~/css/accordion.css" rel="stylesheet" />
 
 <div class="col-md-4">
-    <div style="position:fixed">
-        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
-        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
+    <div style="position:fixed;">
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
         <button class="accordion">Profile</button>
         <div class="panel">
-            <p style="margin-top:50px">Visit your events here</p>
-            <a href="/events/myevents" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
+            <p style="margin-top:50px">Hello, @Context.Session.GetString(SessionConstants.SessionUserFirstName)!</p>
+            <a href="/Profile/@Context.Session.GetInt32(SessionConstants.SessionUserId)" style="margin-bottom:50px" class="btn btn-success form-control">View profile</a>
         </div>
-        <button class="accordion">Groups</button>
+        <button class="accordion">Blog</button>
         <div class="panel">
-            <p style="margin-top:50px">See all the events from all user</p>
-            <a href="/events/all" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
-        </div>
-        <button class="accordion">Articles</button>
-        <div class="panel">
-            <p style="margin-top:50px">Create new event here</p>
-            <a href="/events/create" style="margin-bottom:50px" class="btn btn-success form-control">Create</a>
+            <p style="margin-top:50px">Create and design an article</p>
+            <a href="/Articles" style="margin-bottom:50px" class="btn btn-success form-control">Go to Blog</a>
         </div>
         <button class="accordion">Games</button>
         <div class="panel">
-            <p style="margin-top:50px">Visit your events here</p>
-            <a href="/events/myevents" style="margin-bottom:50px" class="btn btn-success form-control">View</a>
+            <p style="margin-top:50px">Play games and have fun</p>
+            <a href="/events/myevents" style="margin-bottom:50px" class="btn btn-success form-control">Play Game</a>
         </div>
     </div>
 </div>
@@ -35,7 +30,7 @@
 <div class="col-md-8">
     <div class="row">
         <div class="col-md-4">
-            <img class="img-fluid d-block mx-auto" height="200" width="200" src="@Context.Session.GetString(SessionConstants.SessionUserImage)" alt="">
+            <img class="img-fluid d-block mx-auto" @*height="200" width="200"*@ src="@Context.Session.GetString(SessionConstants.SessionUserImage)" alt="">
         </div>
         <div class="col-md-8">
             <div class="jumbotron" style="height:200px; background-color:lightslategrey">

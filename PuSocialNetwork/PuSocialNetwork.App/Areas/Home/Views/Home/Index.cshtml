@@ -5,8 +5,8 @@
 <link href="~/css/accordion.css" rel="stylesheet" />
 <div class="col-md-3">
     <div style="position:fixed;">
-        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
-        <h3 style="color:yellow; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
         <button class="accordion">Profile</button>
         <div class="panel">
             <p style="margin-top:50px">Hello, @Context.Session.GetString(SessionConstants.SessionUserFirstName)!</p>
@@ -31,7 +31,7 @@
 
 <div class="col-md-3">
     <div style="position:fixed">
-        <div class="jumbotron">
+        <div class="jumbotron form-control">
 
         </div>
     </div>
