@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<PuSocialNetwork.Services.Models.PostListingServiceModel>
 
 <div id="partial">
-    <div class="jumbotron" style="padding:5px; background-color:lightgray">
-        <img src="@Context.Session.GetString(SessionConstants.SessionUserImage)" height="50" width="50" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind?</strong><br />
+    <div class="jumbotron" style="padding:5px; background-color:lightblue">
+        <img src="@Context.Session.GetString(SessionConstants.SessionUserImage)" height="50" width="50" class="avatar" alt="Avatar" style="border-radius: 25px 25px;">        <strong>What's on your mind, <strong>@Context.Session.GetString(SessionConstants.SessionUserFirstName)</strong>?</strong><br />
         <form method="post" id="postForm">
             @Html.AntiForgeryToken()
             <div class="row">

@@ -5,8 +5,12 @@
 <link href="~/css/accordion.css" rel="stylesheet" />
 <div class="col-md-3">
     <div style="position:fixed;">
-        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
-        <h3 style="color:blue; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
+        <a href="/Profile/@Context.Session.GetInt32(SessionConstants.SessionUserId)">
+            <div class="jumbotron" style="padding:10px; background-color:lightskyblue">
+                <h3 style="color:blue;text-align:center; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserFirstName)</h3>
+                <h3 style="color:blue;text-align:center; font-family: cursive">@Context.Session.GetString(SessionConstants.SessionUserLastName)</h3><br />
+            </div>
+        </a>
         <button class="accordion">Profile</button>
         <div class="panel">
             <p style="margin-top:50px">Hello, @Context.Session.GetString(SessionConstants.SessionUserFirstName)!</p>
@@ -29,11 +33,11 @@
     @await Html.PartialAsync("_PostPartPartial", Model)
 </div>
 
-<div class="col-md-3" >
+<div class="col-md-3">
     <div style="position:fixed">
         <img src="~/images/logos/P_QuickPoll_reading_enHD.jpg" style="width:80%" />
 
-        <div class="jumbotron form-control" style="width:80%; background-color:aqua">
+        <div class="jumbotron form-control" style="width:80%; background-color:lightblue">
         </div>
     </div>
 </div>

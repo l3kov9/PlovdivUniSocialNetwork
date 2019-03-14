@@ -138,6 +138,8 @@ namespace PuSocialNetwork.Data.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<int>("TotalClicks");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PollId");
