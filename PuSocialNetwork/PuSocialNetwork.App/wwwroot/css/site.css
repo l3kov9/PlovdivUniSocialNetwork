@@ -2,7 +2,8 @@
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-bottom: 20px;
-    background-image: url('../images/backgrounds/wall.jpg');
+    /*background-image: url('../images/backgrounds/wall.jpg');*/
+    background-image: url('../images/backgrounds/wallpaper.wiki-free-cement-wallpaper-hd-pic-wpc007333.jpg');
     /*background-color:lightgray;*/
     background-position: center center;
     background-repeat: no-repeat;

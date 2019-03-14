@@ -25,6 +25,8 @@
 
         public DbSet<Play2048Score> Play2048Scores { get; set; }
 
+        public DbSet<Poll> Polls { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
@@ -32,6 +34,13 @@
 
             builder
                 .ApplyConfiguration(new PostConfig());
+
+            builder
+                .ApplyConfiguration(new PollConfig());
+
+            builder
+                .Entity<UserPoll>()
+                .HasKey(up => new { up.UserId, up.PollId });
 
             //builder
             //    .Entity<Comment>()

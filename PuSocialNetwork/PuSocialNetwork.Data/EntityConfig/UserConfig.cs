@@ -45,6 +45,11 @@
                 .HasMany(u => u.Play2048Scores)
                 .WithOne(sc => sc.User)
                 .HasForeignKey(sc => sc.UserId);
+
+            builder
+                .HasMany(u => u.Polls)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
         }
     }
 }

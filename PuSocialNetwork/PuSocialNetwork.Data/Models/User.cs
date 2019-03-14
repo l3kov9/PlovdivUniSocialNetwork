@@ -49,5 +49,7 @@
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
         public List<Play2048Score> Play2048Scores { get; set; } = new List<Play2048Score>();
+
+        public List<UserPoll> Polls { get; set; } = new List<UserPoll>();
     }
 }
