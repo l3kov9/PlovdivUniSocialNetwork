@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PuSocialNetwork.Services.Models.PostListingServiceModel>
+﻿@model PollViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -30,14 +30,23 @@
 </div>
 
 <div class="col-md-6">
-    @await Html.PartialAsync("_PostPartPartial", Model)
+    @await Html.PartialAsync("_PostPartPartial", Model.Posts)
 </div>
 
 <div class="col-md-3">
-    <div style="position:fixed">
+    <div style="position:fixed;">
         <img src="~/images/logos/P_QuickPoll_reading_enHD.jpg" style="width:80%" />
-
-        <div class="jumbotron form-control" style="width:80%; background-color:lightblue">
+        <br /><br />
+        <div class="jumbotron form-control" style="width:80%; height:100%; background-color:lightblue; padding: 25px">
+            <strong>@Model.Poll.Question</strong>
+            @foreach (var answer in Model.Poll.Answers)
+            {
+                <a href="#">
+                    <div class="radio">
+                        <a class="btn btn-sm btn-success">Vote</a><label><input type="radio" name="@answer.Id">@answer.Text</label>
+                    </div>
+                </a>
+            }
         </div>
     </div>
 </div>

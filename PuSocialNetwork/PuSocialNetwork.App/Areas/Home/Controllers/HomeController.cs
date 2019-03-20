@@ -15,20 +15,22 @@
     {
         private readonly IPostService posts;
         private readonly IUserService users;
+        private readonly IPollService polls;
 
-        public HomeController(IPostService posts, IUserService users)
+        public HomeController(IPostService posts, IUserService users, IPollService polls)
         {
             this.posts = posts;
             this.users = users;
+            this.polls = polls;
         }
 
         [Route("/Home")]
         public IActionResult Index(int page = 1)
-        {
-            var posts = this.posts.All(page);
-
-            return View(posts);
-        }
+            => View(new PollViewModel()
+            {
+                Posts = this.posts.All(page),
+                Poll = this.polls.GetRndPoll((int)HttpContext.Session.GetInt32(SessionConstants.SessionUserId))
+            });
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,7 +77,7 @@
         public IActionResult Profile(int id)
         {
             var user = this.users.GetUserById(id);
-            
+
             return View(user);
         }
 

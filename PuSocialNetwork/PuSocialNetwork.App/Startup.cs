@@ -33,6 +33,7 @@
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IPollService, PollService>();
             services.AddTransient<IBlogArticleService, BlogArticleService>();
             services.AddTransient<IHtmlService, HtmlService>();
             services.AddTransient<IGameService, GameService>();

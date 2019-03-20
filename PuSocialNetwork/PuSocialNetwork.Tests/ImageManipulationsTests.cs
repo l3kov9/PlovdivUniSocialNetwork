@@ -20,7 +20,7 @@
             var before = imgSrc.Length;
             ImageManipulations.Resize(byteArrayAsString);
             var after = imgSrc.Length;
-            var x =byteArrayAsString;
+            var x = byteArrayAsString;
         }
     }
 }
